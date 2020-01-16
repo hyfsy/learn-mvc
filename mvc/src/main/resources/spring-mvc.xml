@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 扫描controller注解 -->
+    <!-- 多个配置文件的话，要防止重复扫描 -->
+    <!-- 使用 use-default-filters 为 false 规定不使用默认的扫描规则 -->
+    <context:component-scan base-package="com.hyf.mvc.controller" use-default-filters="false">
+        <!-- 使用include-filter / exclude-filter 来规定扫描包下指定的注解 -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+    </context:component-scan>
+    <!-- 扫描 @ControllerAdvice 注解 -->
+    <context:component-scan base-package="com.hyf.mvc.exception" />
+
+    <!-- 注解映射器 -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />-->
+    <!-- 注解适配器 -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />-->
+
+    <!-- 让 SpringMVC 自动加载上面两个默认的HandlerMapping HandlerAdapter -->
+    <!-- mvc:annotation-driven 默认加载很多参数绑定方法，比如json转换解析器就默认加载了 -->
+    <!-- 需要在适配器中注入自定义的参数绑定组件(转换器) -->
+    <!-- 需要在适配器中注入自定义的校验器 -->
+    <mvc:annotation-driven conversion-service="conversionServiceFactoryBean" validator="localValidatorFactoryBean" />
+    <!--  enable-matrix-variables="true" 测试注解失败 -->
+
+    <!-- 使用默认的资源过滤 -->
+    <!-- 如果该请求已经被SpringMVC映射过，则找对应的Handler，否则直接去寻找请求对应的目标资源 -->
+    <!--<mvc:default-servlet-handler />-->
+
+    <!-- 会直接跳到页面，不会经过Controller -->
+    <!-- 通常需要和 mvc:annotation-driven 一起配置，否则其他经过Controller的请求不会找到 Handler (404) -->
+    <mvc:view-controller path="/testSkip" view-name="skip" />
+
+    <!-- 让 DispatcherServlet 不拦截静态资源 -->
+    <mvc:resources location="/pages/" mapping="/pages/**"/>
+    <mvc:resources location="/static/" mapping="/static/**"/>
+    <mvc:resources location="/" mapping="index.html"/>
+
+    <!-- 配置视图解析器 -->
+    <!-- 解析jsp页面，默认使用jstl标签 -->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!-- 类型转换器，支持数据转换和格式化 -->
+    <bean id="conversionServiceFactoryBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <!-- 在此配置一个个转换器 -->
+                <bean class="com.hyf.mvc.converter.StringToDateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <!-- 自定义异常处理器 -->
+    <bean id="businessExceptionHandler" class="com.hyf.mvc.exception.BusinessExceptionHandler"/>
+
+    <!-- 配置简单映射异常处理器 -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 默认错误状态 -->
+        <property name="defaultStatusCode" value="404" />
+        <!-- 默认跳转页面 -->
+        <property name="defaultErrorView" value="error" />
+        <property name="exceptionMappings">
+            <props>
+                <!-- 配置异常对应的跳转页面 -->
+                <prop key="java.lang.ArrayIndexOutOfBoundsException">success</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 文件解析器，id必须为这个 -->
+    <!-- DispatcherServlet固定了此id -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 最大上传10M文件 -->
+        <property name="maxUploadSize" value="10485760"/>
+    </bean>
+
+    <!-- 配置多个拦截器，每个都要写一个 <mvc:interceptor> 标签 -->
+    <mvc:interceptors>
+        <!-- 配置一个个拦截器 -->
+        <mvc:interceptor>
+            <!-- 设置要拦截的请求, "/**" 表示所有请求都拦截 -->
+            <mvc:mapping path="/interceptor/*"/>
+            <!-- 设置不要拦截的请求, 相同url exclude-mapping有限 -->
+            <!--<mvc:exclude-mapping path="/**" />-->
+            <!-- 配置拦截器对象 -->
+            <bean id="powerInterceptor" class="com.hyf.mvc.interceptor.PowerInterceptor"/>
+        </mvc:interceptor>
+        <!-- 测试多个拦截器时的方法调用顺序 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/interceptor/*"/>
+            <bean id="orderInterceptor" class="com.hyf.mvc.interceptor.OrderInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 配置校验器 -->
+    <bean id="localValidatorFactoryBean"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- 指定校验器为 Hibernate 校验器 -->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!-- 引用校验错误时的提示文件配置 -->
+        <property name="validationMessageSource" ref="reloadableResourceBundleMessageSource"/>
+    </bean>
+
+    <!-- 配置错误提示文件 -->
+    <bean id="reloadableResourceBundleMessageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <!-- 资源文件名, 不用加 properties, 报红也没事, 前面加 classpath: -->
+                <value>classpath:validator</value>
+            </list>
+        </property>
+        <!-- 文件编码 -->
+        <property name="fileEncodings" value="utf-8"/>
+        <!-- 文件缓存时间, 单位秒(有其他单位) -->
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+
+    <!-- 向IOC容器注入自定义视图 -->
+    <bean id="customView" class="com.hyf.mvc.view.CustomView" />
+
+    <!-- 配置自定义视图的视图解析器 -->
+    <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <!-- 设置此视图解析器的优先级，表示渲染视图先经过此视图解析器 -->
+        <property name="order" value="100" />
+    </bean>
+
+    <!-- 获取IOC容器bean工具 -->
+    <bean class="com.hyf.mvc.util.SpringContextHolder" lazy-init="false" />
+
+</beans>

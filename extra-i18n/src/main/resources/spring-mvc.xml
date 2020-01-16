@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 注解扫描 -->
+    <context:component-scan base-package="com.hyf.**.controller"/>
+    <!-- 使用mvc注解声明 -->
+    <mvc:annotation-driven/>
+    <!-- 让 DispatcherServlet 不拦截静态资源 -->
+    <mvc:resources location="/pages/" mapping="/pages/**"/>
+    <mvc:resources location="/static/" mapping="/static/**"/>
+    <mvc:resources location="/" mapping="index.jsp"/>
+
+    <!-- 配置视图解析器 -->
+    <!-- 解析jsp页面，默认使用jstl标签 -->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+
+
+    <!--===============================================国际化配置=====================================================-->
+
+
+    <!-- 国际化的拦截器，当语言区域发生改变时，该拦截器将进行拦截，根据传递的参数来改变应用的语言环境 -->
+    <!-- 主要用于获取请求中的locale信息，将其转为Locale对像，获取LocaleResolver对象-->
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
+
+    <!-- 配置国际化资源文件 -->
+    <!-- 和文件解析器一样，必须指定此id -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 表示语言配置文件是以language开头的文件（language_zh_CN.properties）-->
+        <property name="basename" value="language"/>
+        <!-- 语言区域里没有找到对应的国际化文件时，默认使用language.properties文件-->
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+
+    <!-- 配置SessionLocaleResolver用于将Locale对象存储于Session中供后续使用 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+</beans>

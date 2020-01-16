@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.hyf.oldmvc.controller"/>
+
+    <mvc:resources mapping="/pages/**" location="/pages/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/index.html" location="/"/>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+
+
+    <!-- 配置校验器 -->
+    <bean id="localValidatorFactoryBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- 使用 Hibernate 校验器 -->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+        <!-- 设置错误信息文件 -->
+        <property name="validationMessageSource" ref="reloadableResourceBundleMessageSource" />
+    </bean>
+
+    <!-- 配置校验后的错误信息文件 -->
+    <!-- 文件路径报错也没事 -->
+    <bean id="reloadableResourceBundleMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:validation" />
+        <property name="fileEncodings" value="utf-8" />
+        <property name="cacheSeconds" value="60" />
+    </bean>
+
+    <!-- 配置验证器和绑定对象绑定 -->
+    <bean id="configurableWebBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+        <property name="validator" ref="localValidatorFactoryBean" />
+    </bean>
+
+    <!-- 将验证器配置 通过绑定对象 配置到适配器中 -->
+    <bean id="requestMappingHandlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="webBindingInitializer" ref="configurableWebBindingInitializer" />
+    </bean>
+
+    <!-- 映射器 -->
+    <bean id="requestMappingHandlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+
+</beans>

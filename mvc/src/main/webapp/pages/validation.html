@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation</title>
+</head>
+<body>
+
+<br/>测试校验和级联校验：<br/>
+<form action="/validation/testValidation">
+    发送人：<input type="text" name="author"/>（不能为空）<br/>
+    信息：<input type="text" name="info"/>（5-16个字符）<br/>
+    级联的名称：<input type="text" name="messageCascade.name"/>（至少5个字符）<br/>
+    <input type="submit" value="提交">
+</form>
+
+<br/>测试分组校验1：<br/>
+<form action="/validation/testValidationGroup1">
+    发送人：<input type="text" name="author"/>（不能为空）<br/>
+    信息：<input type="text" name="info"/>（5-16个字符）<br/>
+    <input type="submit" value="提交">
+</form>
+
+<br/>测试分组校验2：<br/>
+<form action="/validation/testValidationGroup2">
+    发送人：<input type="text" name="author"/>（不能为空）<br/>
+    信息：<input type="text" name="info"/>（5-16个字符）<br/>
+    <input type="submit" value="提交">
+</form>
+
+<br/>测试自定义校验：<br/>
+<form action="/validation/testCustomValidation">
+    时间：<input type="text" name="dateStr"/>（默认格式为：yyyy-MM-dd HH:mm:ss）<br/>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

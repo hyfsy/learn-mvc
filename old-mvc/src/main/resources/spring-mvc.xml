@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <!--===================================HandlerMapping/HandlerAdapter=============================================-->
+
+
+    <!-- 非注解的映射器、适配器（1） -->
+
+    <!-- 非注解的Handler(Controller) -->
+    <bean id="oldController1" name="/testOldController1" class="com.hyf.oldmvc.controller.OldController"/>
+    <!-- 配置此映射器后，只要添加一个个bean，通过name指定Handler即可 -->
+    <bean id="beanNameUrlHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- 声明适配器，要求编写的Handler实现Controller接口 -->
+    <bean id="simpleControllerHandlerAdapter"
+          class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+
+
+    <!-- 非注解的映射器、适配器（2） -->
+    <bean id="oldController2" class="com.hyf.oldmvc.controller.OldController2"/>
+
+    <!-- 配置此映射器，设置key对应的Handler(Controller) -->
+    <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <!-- 将url和handler集中进 -->
+                <!-- 通过id指定对应的Handler(Controller) ,也是要配置一个controller bean对象的 -->
+                <prop key="/testOldController2">oldController1</prop>
+                <!-- 一个controller可以对应多个映射 -->
+                <prop key="/testOldController3">oldController1</prop>
+                <!-- 上下两个配置 反应了非注解的映射器、适配器可以不配对使用 -->
+                <prop key="/testOldController4">oldController2</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 要求编写的handler实现HttpRequestHandler接口 -->
+    <bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+
+
+    <!-- 非注解的映射器、适配器不需要配套使用 -->
+    <!-- 注解映射器、适配器（要配套使用） -->
+
+    <!-- 在spring 3.1 之前，映射器使用 DefaultAnnotationHandlerMapping -->
+    <!-- 在spring 3.1 之前，适配器使用 AnnotationMethodHandlerAdapter -->
+
+    <!-- 在spring 3.1 之后，映射器使用 RequestMappingHandlerMapping -->
+    <!-- 在spring 3.1 之后，适配器使用 RequestMappingHandlerAdapter -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+    <!-- 上面两个可以通过下面一个标签，会自动配置 -->
+    <mvc:annotation-driven/>
+    <!-- 使用注解映射器、适配器时要配置此标签，扫描包含@Controller注解的Handler(Controller) -->
+    <context:component-scan base-package="com.hyf.oldmvc.controller"/>
+
+
+    <!--=======================================Converter=============================================================-->
+    <!-- 将web.xml文件中引入的spring-mvc文件修改为对应配置文件，每个配置文件都可单独启动项目 -->
+    <!--=======================================Validation============================================================-->
+    <!-- 将web.xml文件中引入的spring-mvc文件修改为对应配置文件，每个配置文件都可单独启动项目 -->
+    <!--=======================================Interceptor===========================================================-->
+    <!-- 将web.xml文件中引入的spring-mvc文件修改为对应配置文件，每个配置文件都可单独启动项目 -->
+    <!--=======================================ViewResolver==========================================================-->
+
+    <mvc:resources mapping="/pages/**" location="/pages/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="index.html" location="/"/>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+</beans>

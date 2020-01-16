@@ -1,0 +1,121 @@
+
+	@org.springframework.format.annotation.DateTimeFormat java.lang.Long -> java.lang.String: org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory@22e85fac,@org.springframework.format.annotation.NumberFormat java.lang.Long -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.DateTimeFormat java.time.LocalDate -> java.lang.String: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.time.LocalDate -> java.lang.String : org.springframework.format.datetime.standard.TemporalAccessorPrinter@28057f45
+	@org.springframework.format.annotation.DateTimeFormat java.time.LocalDateTime -> java.lang.String: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.time.LocalDateTime -> java.lang.String : org.springframework.format.datetime.standard.TemporalAccessorPrinter@282e5956
+	@org.springframework.format.annotation.DateTimeFormat java.time.LocalTime -> java.lang.String: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.time.LocalTime -> java.lang.String : org.springframework.format.datetime.standard.TemporalAccessorPrinter@1ce77400
+	@org.springframework.format.annotation.DateTimeFormat java.time.OffsetDateTime -> java.lang.String: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.time.OffsetDateTime -> java.lang.String : org.springframework.format.datetime.standard.TemporalAccessorPrinter@1ed5334d
+	@org.springframework.format.annotation.DateTimeFormat java.time.OffsetTime -> java.lang.String: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.time.OffsetTime -> java.lang.String : org.springframework.format.datetime.standard.TemporalAccessorPrinter@38574008
+	@org.springframework.format.annotation.DateTimeFormat java.time.ZonedDateTime -> java.lang.String: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.time.ZonedDateTime -> java.lang.String : org.springframework.format.datetime.standard.TemporalAccessorPrinter@7824dec1
+	@org.springframework.format.annotation.DateTimeFormat java.util.Calendar -> java.lang.String: org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory@22e85fac
+	@org.springframework.format.annotation.DateTimeFormat java.util.Date -> java.lang.String: org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory@22e85fac
+	@org.springframework.format.annotation.NumberFormat java.lang.Byte -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.NumberFormat java.lang.Double -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.NumberFormat java.lang.Float -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.NumberFormat java.lang.Integer -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.NumberFormat java.lang.Short -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.NumberFormat java.math.BigDecimal -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	@org.springframework.format.annotation.NumberFormat java.math.BigInteger -> java.lang.String: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.Boolean -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@1079eaac
+	java.lang.Character -> java.lang.Number : org.springframework.core.convert.support.CharacterToNumberFactory@7ffde725
+	java.lang.Character -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@26136375
+	java.lang.Enum -> java.lang.Integer : org.springframework.core.convert.support.EnumToIntegerConverter@27fce362
+	java.lang.Enum -> java.lang.String : org.springframework.core.convert.support.EnumToStringConverter@34ea1117
+	java.lang.Integer -> java.lang.Enum : org.springframework.core.convert.support.IntegerToEnumConverterFactory@780f5a45
+	java.lang.Long -> java.time.Instant : org.springframework.format.datetime.standard.DateTimeConverters$LongToInstantConverter@47b98d4
+	java.lang.Long -> java.util.Calendar : org.springframework.format.datetime.DateFormatterRegistrar$LongToCalendarConverter@572879a7,java.lang.Long -> java.util.Calendar : org.springframework.format.datetime.DateFormatterRegistrar$LongToCalendarConverter@1bc35180
+	java.lang.Long -> java.util.Date : org.springframework.format.datetime.DateFormatterRegistrar$LongToDateConverter@2e9b4418,java.lang.Long -> java.util.Date : org.springframework.format.datetime.DateFormatterRegistrar$LongToDateConverter@6c6706d6
+	java.lang.Number -> java.lang.Character : org.springframework.core.convert.support.NumberToCharacterConverter@7f59655c
+	java.lang.Number -> java.lang.Number : org.springframework.core.convert.support.NumberToNumberConverterFactory@7f9c79c9
+	java.lang.Number -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@4ba961ab
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.lang.Long: org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory@22e85fac,java.lang.String -> @org.springframework.format.annotation.NumberFormat java.lang.Long: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.time.LocalDate: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.lang.String -> java.time.LocalDate: org.springframework.format.datetime.standard.TemporalAccessorParser@7060efa9
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.time.LocalDateTime: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.lang.String -> java.time.LocalDateTime: org.springframework.format.datetime.standard.TemporalAccessorParser@5f44e65d
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.time.LocalTime: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.lang.String -> java.time.LocalTime: org.springframework.format.datetime.standard.TemporalAccessorParser@2b52e42e
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.time.OffsetDateTime: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.lang.String -> java.time.OffsetDateTime: org.springframework.format.datetime.standard.TemporalAccessorParser@66db48c4
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.time.OffsetTime: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.lang.String -> java.time.OffsetTime: org.springframework.format.datetime.standard.TemporalAccessorParser@259251b3
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.time.ZonedDateTime: org.springframework.format.datetime.standard.Jsr310DateTimeFormatAnnotationFormatterFactory@6b4b8923,java.lang.String -> java.time.ZonedDateTime: org.springframework.format.datetime.standard.TemporalAccessorParser@446b367f
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.util.Calendar: org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory@22e85fac
+	java.lang.String -> @org.springframework.format.annotation.DateTimeFormat java.util.Date: org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory@22e85fac
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.lang.Byte: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.lang.Double: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.lang.Float: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.lang.Integer: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.lang.Short: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.math.BigDecimal: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> @org.springframework.format.annotation.NumberFormat java.math.BigInteger: org.springframework.format.number.NumberFormatAnnotationFormatterFactory@79db6cef
+	java.lang.String -> java.lang.Boolean : org.springframework.core.convert.support.StringToBooleanConverter@2dcc3cab
+	java.lang.String -> java.lang.Character : org.springframework.core.convert.support.StringToCharacterConverter@3add17d6
+	java.lang.String -> java.lang.Enum : org.springframework.core.convert.support.StringToEnumConverterFactory@243e1e7a
+	java.lang.String -> java.lang.Number : org.springframework.core.convert.support.StringToNumberConverterFactory@1b98417a
+	java.lang.String -> java.nio.charset.Charset : org.springframework.core.convert.support.StringToCharsetConverter@15bc8c20
+	java.lang.String -> java.time.Duration: org.springframework.format.datetime.standard.DurationFormatter@2c9ef437
+	java.lang.String -> java.time.Instant: org.springframework.format.datetime.standard.InstantFormatter@126a4117
+	java.lang.String -> java.time.MonthDay: org.springframework.format.datetime.standard.MonthDayFormatter@5b94af56
+	java.lang.String -> java.time.Period: org.springframework.format.datetime.standard.PeriodFormatter@2e4ba6f6
+	java.lang.String -> java.time.YearMonth: org.springframework.format.datetime.standard.YearMonthFormatter@1b3637de
+	java.lang.String -> java.util.Currency : org.springframework.core.convert.support.StringToCurrencyConverter@983e830
+	java.lang.String -> java.util.Locale : org.springframework.core.convert.support.StringToLocaleConverter@73e5e429
+	java.lang.String -> java.util.Properties : org.springframework.core.convert.support.StringToPropertiesConverter@764dadc2
+	java.lang.String -> java.util.TimeZone : org.springframework.core.convert.support.StringToTimeZoneConverter@7f5a08b
+	java.lang.String -> java.util.UUID : org.springframework.core.convert.support.StringToUUIDConverter@69dbe71e
+	java.nio.charset.Charset -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@559b9a06
+	java.time.Duration -> java.lang.String : org.springframework.format.datetime.standard.DurationFormatter@2c9ef437
+	java.time.Instant -> java.lang.Long : org.springframework.format.datetime.standard.DateTimeConverters$InstantToLongConverter@1dda6db
+	java.time.Instant -> java.lang.String : org.springframework.format.datetime.standard.InstantFormatter@126a4117
+	java.time.LocalDateTime -> java.time.LocalDate : org.springframework.format.datetime.standard.DateTimeConverters$LocalDateTimeToLocalDateConverter@6f8c6d64
+	java.time.LocalDateTime -> java.time.LocalTime : org.springframework.format.datetime.standard.DateTimeConverters$LocalDateTimeToLocalTimeConverter@3b0997f5
+	java.time.MonthDay -> java.lang.String : org.springframework.format.datetime.standard.MonthDayFormatter@5b94af56
+	java.time.OffsetDateTime -> java.time.Instant : org.springframework.format.datetime.standard.DateTimeConverters$OffsetDateTimeToInstantConverter@58df83a6
+	java.time.OffsetDateTime -> java.time.LocalDate : org.springframework.format.datetime.standard.DateTimeConverters$OffsetDateTimeToLocalDateConverter@24fafca1
+	java.time.OffsetDateTime -> java.time.LocalDateTime : org.springframework.format.datetime.standard.DateTimeConverters$OffsetDateTimeToLocalDateTimeConverter@5faccdf7
+	java.time.OffsetDateTime -> java.time.LocalTime : org.springframework.format.datetime.standard.DateTimeConverters$OffsetDateTimeToLocalTimeConverter@6a6ca805
+	java.time.OffsetDateTime -> java.time.ZonedDateTime : org.springframework.format.datetime.standard.DateTimeConverters$OffsetDateTimeToZonedDateTimeConverter@2bb37d85
+	java.time.Period -> java.lang.String : org.springframework.format.datetime.standard.PeriodFormatter@2e4ba6f6
+	java.time.YearMonth -> java.lang.String : org.springframework.format.datetime.standard.YearMonthFormatter@1b3637de
+	java.time.ZoneId -> java.util.TimeZone : org.springframework.core.convert.support.ZoneIdToTimeZoneConverter@20cf6844
+	java.time.ZonedDateTime -> java.time.Instant : org.springframework.format.datetime.standard.DateTimeConverters$ZonedDateTimeToInstantConverter@3ba9f847
+	java.time.ZonedDateTime -> java.time.LocalDate : org.springframework.format.datetime.standard.DateTimeConverters$ZonedDateTimeToLocalDateConverter@2ff83472
+	java.time.ZonedDateTime -> java.time.LocalDateTime : org.springframework.format.datetime.standard.DateTimeConverters$ZonedDateTimeToLocalDateTimeConverter@22dd80a3
+	java.time.ZonedDateTime -> java.time.LocalTime : org.springframework.format.datetime.standard.DateTimeConverters$ZonedDateTimeToLocalTimeConverter@2eb62f5c
+	java.time.ZonedDateTime -> java.time.OffsetDateTime : org.springframework.format.datetime.standard.DateTimeConverters$ZonedDateTimeToOffsetDateTimeConverter@551c1d32
+	java.time.ZonedDateTime -> java.util.Calendar : org.springframework.core.convert.support.ZonedDateTimeToCalendarConverter@11c59ea2
+	java.util.Calendar -> java.lang.Long : org.springframework.format.datetime.DateFormatterRegistrar$CalendarToLongConverter@587ce6b,java.util.Calendar -> java.lang.Long : org.springframework.format.datetime.DateFormatterRegistrar$CalendarToLongConverter@214dbd47
+	java.util.Calendar -> java.time.Instant : org.springframework.format.datetime.standard.DateTimeConverters$CalendarToInstantConverter@167aaee9
+	java.util.Calendar -> java.time.LocalDate : org.springframework.format.datetime.standard.DateTimeConverters$CalendarToLocalDateConverter@5e699f45
+	java.util.Calendar -> java.time.LocalDateTime : org.springframework.format.datetime.standard.DateTimeConverters$CalendarToLocalDateTimeConverter@4ce4c300
+	java.util.Calendar -> java.time.LocalTime : org.springframework.format.datetime.standard.DateTimeConverters$CalendarToLocalTimeConverter@7a8ff59d
+	java.util.Calendar -> java.time.OffsetDateTime : org.springframework.format.datetime.standard.DateTimeConverters$CalendarToOffsetDateTimeConverter@6e068855
+	java.util.Calendar -> java.time.ZonedDateTime : org.springframework.format.datetime.standard.DateTimeConverters$CalendarToZonedDateTimeConverter@577c3438
+	java.util.Calendar -> java.util.Date : org.springframework.format.datetime.DateFormatterRegistrar$CalendarToDateConverter@527bb452,java.util.Calendar -> java.util.Date : org.springframework.format.datetime.DateFormatterRegistrar$CalendarToDateConverter@68f55964
+	java.util.Currency -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@761ec82
+	java.util.Date -> java.lang.Long : org.springframework.format.datetime.DateFormatterRegistrar$DateToLongConverter@147ec4b7,java.util.Date -> java.lang.Long : org.springframework.format.datetime.DateFormatterRegistrar$DateToLongConverter@72a913ba
+	java.util.Date -> java.util.Calendar : org.springframework.format.datetime.DateFormatterRegistrar$DateToCalendarConverter@50b7a514,java.util.Date -> java.util.Calendar : org.springframework.format.datetime.DateFormatterRegistrar$DateToCalendarConverter@30428591
+	java.util.Locale -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@17e331eb
+	java.util.Properties -> java.lang.String : org.springframework.core.convert.support.PropertiesToStringConverter@7f0f42a7
+	java.util.UUID -> java.lang.String : org.springframework.core.convert.support.ObjectToStringConverter@6156135b
+	org.springframework.core.convert.support.ArrayToArrayConverter@49240579
+	org.springframework.core.convert.support.ArrayToCollectionConverter@7a6e910e
+	org.springframework.core.convert.support.ArrayToObjectConverter@5ff54d59
+	org.springframework.core.convert.support.ArrayToStringConverter@66a4066f
+	org.springframework.core.convert.support.ByteBufferConverter@74ff243b
+	org.springframework.core.convert.support.ByteBufferConverter@74ff243b
+	org.springframework.core.convert.support.ByteBufferConverter@74ff243b
+	org.springframework.core.convert.support.ByteBufferConverter@74ff243b
+	org.springframework.core.convert.support.CollectionToArrayConverter@7f71ee9e
+	org.springframework.core.convert.support.CollectionToCollectionConverter@18b90bcd
+	org.springframework.core.convert.support.CollectionToObjectConverter@6be3034c
+	org.springframework.core.convert.support.CollectionToStringConverter@712a80c
+	org.springframework.core.convert.support.FallbackObjectToStringConverter@6d9b6769
+	org.springframework.core.convert.support.IdToEntityConverter@1c16be5d,org.springframework.core.convert.support.ObjectToObjectConverter@364db4ac
+	org.springframework.core.convert.support.MapToMapConverter@16d10f35
+	org.springframework.core.convert.support.ObjectToArrayConverter@41434935
+	org.springframework.core.convert.support.ObjectToCollectionConverter@30b2f5e4
+	org.springframework.core.convert.support.ObjectToOptionalConverter@5096c4f6
+	org.springframework.core.convert.support.ObjectToOptionalConverter@5096c4f6
+	org.springframework.core.convert.support.ObjectToOptionalConverter@5096c4f6
+	org.springframework.core.convert.support.StreamConverter@22f27936
+	org.springframework.core.convert.support.StreamConverter@22f27936
+	org.springframework.core.convert.support.StreamConverter@22f27936
+	org.springframework.core.convert.support.StreamConverter@22f27936
+	org.springframework.core.convert.support.StringToArrayConverter@fc2d80f
+	org.springframework.core.convert.support.StringToCollectionConverter@1e891a41

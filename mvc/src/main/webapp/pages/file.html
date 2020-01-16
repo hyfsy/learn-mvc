@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File</title>
+</head>
+<body>
+
+<!-- 普通文件上传 -->
+普通上传<br />
+<form action="/file/commonFileUpload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file1"/>
+    <input type="submit" value="上传1"/>
+</form>
+
+<!-- springMVC文件上传 -->
+springMVC上传<br />
+<form action="/file/mvcFileUpload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file2"/>
+    <input type="submit" value="上传2"/>
+</form>
+
+<!-- 远程服务器文件上传 -->
+跨服务器上传<br />
+<form action="/file/remoteFileUpload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file3"/>
+    <input type="submit" value="上传3"/>
+</form>
+</body>
+</html>

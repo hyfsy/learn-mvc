@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Annotation</title>
+    <script src="../static/js/jquery/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+<!-- RequestBody和ResponseBody注解例子 -->
+测试 RequestBody和ResponseBody：
+<form action="/annotation/testRequestBodyAndResponseBody" method="post">
+    姓名：<input type="text" value="" name="name"/><br/>
+    年龄：<input type="text" value="" name="age"/><br/>
+    <input type="submit" value="提交">
+</form>
+<button id="btn1">测试 Request/Response Body</button>
+
+<br/>
+<br/>
+<button id="btn2">测试 PathVariable</button>
+
+<br/>
+<br/>
+<!-- 测试 testRequestParam -->
+测试 testRequestParam：
+<form action="/annotation/testRequestParam">
+    姓名：<input type="text" value="" name="name"/><br/>
+    <input type="submit" value="提交">
+</form>
+
+<br/>
+<br/>
+<a href="/annotation/testRequestHeader">测试 RequestHeader</a>
+
+<br/>
+<br/>
+<a href="/annotation/testCookieValue">测试 CookieValue</a>
+
+<br/>
+<br/>
+<a href="/annotation/testSetSessionAttributes">测试 Set、GetSessionAttributes</a>
+
+<br/>
+<br/>
+测试 ModelAttribute
+<form action="/annotation/testModelAttribute">
+    姓名：<input type="text" value="" name="name"/><br/>
+    年龄：<input type="text" value="" name="age"/><br/>
+    <input type="submit" value="提交">
+</form>
+
+<br/>
+<br/>
+测试 ModelAttributeMethodNoReturn
+<form action="/annotation/testModelAttributeNoReturn">
+    姓名：<input type="text" value="" name="name"/><br/>
+    年龄：<input type="text" value="" name="age"/><br/>
+    <input type="submit" value="提交">
+</form>
+
+<br/>
+<br/>
+<a href="/annotation/testXmlRootElementResolvePojo">testXmlRootElementResolvePojo</a>
+
+<script>
+    document.cookie = "name=张三;path=/";
+    $(function () {
+        const user = {'name': '张三', 'age': '12'};
+        $("#btn1").click(function () {
+            $.ajax({
+                url: "/annotation/testRequestBodyAndResponseBody",
+                data: JSON.stringify(user),
+                type: "post",
+                // contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        });
+
+        $("#btn2").click(function () {
+            $.ajax({
+                url: "/annotation/testVariable/10",
+                data: {},
+                type: "post",
+                dataType: "text",
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    })
+</script>
+
+</body>
+</html>
