@@ -19,7 +19,7 @@ public @interface StringDateFormat {
     String regex() default "yyyy-MM-dd HH:mm:ss";
 
     /**
-     * 自定义注解如果要和 Hibernate 的校验规则配套使用，注解中必须要存在下面三个属性
+     * 自定义注解如果要和 Hibernate 的校验规则配套使用，注解中必须要存在下面三个属性（Spring强制，见 SpringValidatorAdapter）
      * <p>
      * 这是 Hibernate Validation框架要求的
      * <p>
