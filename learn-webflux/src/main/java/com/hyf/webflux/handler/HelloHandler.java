@@ -11,9 +11,12 @@ import org.springframework.web.servlet.function.ServerResponse;
 @Component
 public class HelloHandler {
 
+    /**
+     * 跳转页面在此处不适合，可以使用 SpringMVC
+     */
     public ServerResponse hello(ServerRequest request) {
         System.out.println("hello webflux: " + request.path());
-        return ServerResponse.ok().build();
+        return ServerResponse.ok().body("success!!!");
     }
 
     public ServerResponse createPerson(ServerRequest request) {

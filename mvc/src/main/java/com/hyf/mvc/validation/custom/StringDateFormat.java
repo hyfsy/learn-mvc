@@ -25,7 +25,7 @@ public @interface StringDateFormat {
      * <p>
      * 都必须有默认值
      */
-    String message() default "{com.hyf.mvc.validation.custom.StringDate.message}";
+    String message() default "{com.hyf.mvc.validation.custom.StringDateFormat.message}";
 
     Class<?>[] groups() default {};
 
