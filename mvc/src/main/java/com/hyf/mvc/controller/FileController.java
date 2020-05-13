@@ -1,19 +1,18 @@
 package com.hyf.mvc.controller;
 
-import com.hyf.mvc.pojo.User;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
@@ -117,22 +116,38 @@ public class FileController {
      */
     @RequestMapping("/remoteFileUpload")
     public String remoteFileUpload(MultipartFile file3) throws Exception {
-        System.out.println("start remote file upload...");
+
+        /*
+         * path 服务器上传路径需要修改
+         * fileName 文件名不能为中文
+         */
+
 
         // 定义上传文件路径，要事先创建文件夹，否则报409(conflict)
         String path = "http://localhost:8102/fileserver/uploads/";
         // 获取文件名
-        String fileName = file3.getOriginalFilename();
+        String fileName = file3.getOriginalFilename() != null ? file3.getOriginalFilename() : "";
+        fileName = URLEncoder.encode(fileName, "UTF-8");
+        String remoteFilePath = path + fileName;
+        System.out.println("start remote file upload...: " + remoteFilePath);
 
-        // 创建客户端对象
-        Client client = Client.create();
-        // 和图片服务器进行连接
-        WebResource resource = client.resource(path + fileName);
-        System.out.println(path + fileName);
-        // 上传文件到服务器
-        resource.put(file3.getBytes());
+        try {
+            // 创建客户端对象
+            Client client = Client.create();
+            System.out.println("create client success: " + client);
 
-        System.out.println("success remote file upload");
+            // 和图片服务器进行连接
+            WebResource resource = client.resource(remoteFilePath);
+            System.out.println("create webResource success: " + resource);
+
+            // 上传文件到服务器
+            resource.put(file3.getBytes());
+            System.out.println("upload success!!!");
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
         return "redirect:/pages/success.html";
     }
 }
