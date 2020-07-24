@@ -143,7 +143,7 @@ public class FileController {
             // 上传文件到服务器
             resource.put(file3.getBytes());
             System.out.println("upload success!!!");
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }

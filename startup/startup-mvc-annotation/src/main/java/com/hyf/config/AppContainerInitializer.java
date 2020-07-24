@@ -4,6 +4,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 
 /**
  * 注解方式初始化容器
@@ -47,5 +49,16 @@ public class AppContainerInitializer extends AbstractAnnotationConfigDispatcherS
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding("UTF-8");
         return new Filter[]{encodingFilter};
+    }
+
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+
+        String filePath = "E:\\file\\";
+        long maxFileSize = (long)(5 * Math.pow(2, 20));
+        long maxRequestSize = (long)(10 * Math.pow(2, 20));
+        int fileSizeThreshold = 0;
+
+        registration.setMultipartConfig(new MultipartConfigElement(filePath, maxFileSize, maxRequestSize, fileSizeThreshold));
     }
 }
